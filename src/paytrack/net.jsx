@@ -3,7 +3,21 @@ import Select from 'react-select';
 
 export default function Net(props) {
     const grossPay = props.grossPay
-    const [deductionRate, setDeductionRate] = useState(0.8);
+
+    // state for the select deductions bar, checks for stored state in local storage
+    // deductionState is the localStorage key - deductionRate is the state
+    const [deductionRate, setDeductionRate] = useState(() => {
+        const storedDeductions = localStorage.getItem("deductionState");
+        console.log("stored deductions: ", storedDeductions);
+        return storedDeductions ? JSON.parse(localStorage.getItem(storedDeductions)) : "0.8";
+    })
+
+    // to update local storage when the select bar options are changed
+    useEffect(() => {
+        localStorage.setItem("deductionState", JSON.stringify(deductionRate));
+    }, [deductionRate]);
+
+
     const [netPay, setNetPay] = useState(0);
   
     useEffect(() => {
@@ -44,9 +58,8 @@ export default function Net(props) {
             defaultValue={deductionOptions[5]}
             title = "change deduction rate"
             className='dropdown-options'
-            placeholder={deductionRate ? deductionRate.label : "Deductions Rate"}
+            placeholder={deductionRate ? deductionRate : "Deductions Rate"}
             options = {deductionOptions}
-            value = {deductionRate}
             onChange = {handleDeductionRate}
           />
         </div>
