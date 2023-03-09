@@ -1,3 +1,7 @@
+// debugging the select bar to have it store data in local storage. need it to fetch when refreshed
+// right now the 'deductions' variable is working
+// need to get the deductionState to work the same
+
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select';
 
