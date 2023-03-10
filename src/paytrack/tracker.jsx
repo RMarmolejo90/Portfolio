@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Timer from './timer.jsx';
 import Net from './net.jsx'
+import Clear from './clear.jsx'
 
 
 export default function 
@@ -104,6 +105,7 @@ export default function
         <Net 
             grossPay = {grossPay}
         />
+        <Clear />
     </div>
   )
 }

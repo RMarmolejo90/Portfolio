@@ -7,21 +7,26 @@ import Select from 'react-select';
 
 export default function Net(props) {
     const grossPay = props.grossPay
-
+    
     // state for the select deductions bar, checks for stored state in local storage
     // deductionState is the localStorage key - deductionRate is the state
-    const [deductionRate, setDeductionRate] = useState(() => {
-        const storedDeductions = localStorage.getItem('deductionState');
-        console.log("stored deductions: ", storedDeductions);
-        return storedDeductions ? console.log("stored value")
-        //JSON.parse(localStorage.getItem(storedDeductions)) 
-        : "0.8";
 
-    })
+    const storedDeductions = localStorage.getItem('deductionState');
+    const defaultDeductionRate = 0.8;
+    
+    const [deductionRate, setDeductionRate] = useState(() => {
+      try {
+        return storedDeductions ? JSON.parse(storedDeductions) : defaultDeductionRate;
+      } catch (error) {
+        console.error('Error parsing deduction rate:', error);
+        return defaultDeductionRate;
+      }
+    });
 
     // to update local storage when the select bar options are changed
     useEffect(() => {
         localStorage.setItem('deductionState', JSON.stringify(deductionRate));
+        console.log("stored deductions: ", storedDeductions);
     }, [deductionRate]);
 
 
@@ -30,17 +35,29 @@ export default function Net(props) {
     useEffect(() => {
       setNetPay(grossPay * deductionRate);
     }, [grossPay, deductionRate]);
- /* 
-    // This sets the default deduction option to 20% on first render
-    useEffect(() => {
-      const defaultOption = deductionOptions.find(option => option.id === 6);
-      setDeductionRate(defaultOption.value);
-    }, []);
-    */
+  
+    
+
+//handles the state and local storage for select bar placeholder
+
+    const [deductionsLabel, setDeductionsLabel] = useState(
+        () => {
+            const storedLabel = localStorage.getItem('placeholderText');
+            return storedLabel ? JSON.parse(storedLabel) : "Default 20%"
+        }
+    )
+
+    useEffect(
+        () => {
+            const jsonLabel = JSON.stringify(deductionsLabel);
+            localStorage.setItem('placeholderText', jsonLabel);
+        }, [deductionsLabel]
+    )
    
    function handleDeductionRate(data){
        setDeductionRate(data.value);
        setDefDeductions(data.value);
+       setDeductionsLabel(data.label);
     }
   
     const deductionOptions = [
@@ -57,19 +74,27 @@ export default function Net(props) {
       {id: 11, value:0.70, label:"30%"}
     ];
 
-    // trying new version - add local storage deduction state
-        const deductionDefault = localStorage.getItem('deductions');
-        const [defDeductions, setDefDeductions] = useState(
-            () => {
-                return deductionDefault ? deductionDefault : deductionOptions[5];
-            }
-        )
+    // trying new version - add local storage deduction state - sets default to the last choice, or 20% option
+   
     
-        useEffect(
-            () => {
-                localStorage.setItem('deductions', defDeductions);
-            }, [deductionRate]
-        );
+    const deductionDefault = localStorage.getItem('deductions');
+    const defaultOption = deductionOptions[5].value;
+    
+    useEffect(
+        () => {
+            localStorage.setItem('deductions', JSON.stringify(defDeductions));
+        }, [deductionRate]
+    );
+    const [defDeductions, setDefDeductions] = useState(
+        () => {
+            try {
+                return deductionDefault ? JSON.parse(deductionDefault) : defaultOption;
+            } catch (error) {
+                console.error('error parsing the deductionDefault', error);
+                return defaultOption;
+            }
+        }
+    )
     
     return (
       <div>
@@ -80,7 +105,7 @@ export default function Net(props) {
             defaultValue={deductionDefault}
             title = "change deduction rate"
             className='dropdown-options'
-            placeholder={deductionRate ? deductionRate : "Deductions Rate"}
+            placeholder={deductionsLabel}
             options = {deductionOptions}
             onChange = {handleDeductionRate}
           />
