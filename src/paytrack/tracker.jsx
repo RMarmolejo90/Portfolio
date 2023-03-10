@@ -7,24 +7,31 @@ import Clear from './clear.jsx'
 export default function 
 () {
   // core logic - sets state for the form and time - imported from Home in Vite project
-  const [isActive, setIsActive] = useState(false); 
-  const [seconds, setSeconds] = useState(0);
-  const hours = Math.floor(seconds / 3600);
-  const minute = Math.floor((seconds % 3600) / 60);
-  const second = Number(seconds % 60);
-  const [buttonText, setButtonText] = useState("Start");
-
-  useEffect(() => {
-      let interval = null;
-      if (isActive){
-      interval = setInterval(() => {
-          setSeconds(prevseconds => prevseconds + 1);
-          console.log('home seconds ' + seconds);
-      }, 1000);
-      return () => clearInterval(interval);
-      }
-  }, [isActive]);
-
+    const [isActive, setIsActive] = useState(false); 
+    const [seconds, setSeconds] = useState(0);
+    const hours = Math.floor(seconds / 3600);
+    const minute = Math.floor((seconds % 3600) / 60);
+    const second = Number(seconds % 60);
+    const [buttonText, setButtonText] = useState("Start");
+    const date = new Date();
+    const time = date.getTime();
+    
+    
+    
+    // timer function
+    const startTime = JSON.parse(localStorage.getItem('startTime'));
+    
+    useEffect(() => {
+        let interval = null;
+    if (isActive && startTime){
+        interval = setInterval(() => {
+        const timeElapsed = (date.getTime() - startTime);
+        const currentSeconds = (timeElapsed / 1000);
+        setSeconds(currentSeconds);
+        }, 1000);
+        return () => clearInterval(interval);
+    }
+    }, [isActive, startTime]);
    // handles the form         
    const [inputRate, setInputRate] = useState('');
    const [submittedRate, setSubmittedRate] = useState (0);
@@ -45,27 +52,28 @@ export default function
   
   
   // handles timer button
-  const handleStartTimer = (event) => {
+  const handleStartTimer = () => {
       console.log('clicked-start');
       setIsActive(true);
       setButtonText("Stop")
+      console.log(time);
+      localStorage.setItem(JSON.stringify('startTime'), time);
   }
   
-  const handleStopTimer = (event) => {
+  const handleStopTimer = () => {
       setIsActive(false);
       setButtonText("Start");
       console.log('clicked stop');
   };
 
   // this calculates the hourly pay into seconds
-    
+  
 
   useEffect(() => {
     let interval = null;
     if (isActive){
       interval = setInterval(() => {
         setGrossPay((prevgrossPay => prevgrossPay + payPerSecond))
-        console.log('pay increasing : ' + grossPay +" isActive = " + isActive);
       }, 1000);
     return () => clearInterval(interval);
     }
