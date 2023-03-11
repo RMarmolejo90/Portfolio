@@ -116,7 +116,7 @@ export default function
 
     return (
         <div className='p-20'>
-            <h1 className='text-3xl font-thin p-2 text-center'>Pay Tracking App</h1>
+            <h1 className='text-5xl font-thin p-2 text-center'>Pay Tracking App</h1>
             <div className='flex-auto justify-center items-center'>
                 <Timer
                     hours={hours}
@@ -145,7 +145,7 @@ export default function
                 value={ inputRate } 
                 onChange={ handleRate } 
                 />
-                <button type="submit">Submit</button>
+                <button className='bg-slate-100 border-slate-500 rounded-md text-slate-500 font-semibold p-1.5' type="submit">Submit</button>
             </form>
             <Net 
                 grossPay = {grossPay}
