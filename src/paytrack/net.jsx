@@ -96,7 +96,7 @@ export default function Net(props) {
     
     return (
       <div>
-        <h1>Todays Net Pay: {netPay.toFixed(3)}</h1>
+        <h1>Todays Net Pay: ${netPay.toFixed(2)}</h1>
         <label htmlFor="deductions">Deductions Rate</label>
         <div className='dropdown-wrapper'>
           <Select 

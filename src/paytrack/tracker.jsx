@@ -15,18 +15,19 @@ export default function
     );
     const [elapsedTime, setElapsedTime] = useState(0);
     
-    // startTime is not currently used other than for console logging
-    // its used for future features, and for debugging
     const [startTime, setStartTime] = useState(null);
     
     // timer function
     
+    
     useEffect(() => {
-        const interval = setInterval(() => {
         const storedTime = localStorage.getItem('startTime');
+        const interval = setInterval(() => {
         if (storedTime) {
             const elapsedTimeInSeconds = Math.floor((new Date().getTime() - storedTime) / 1000);
             setElapsedTime(elapsedTimeInSeconds);
+            localStorage.setItem('timeElapsed', elapsedTimeInSeconds);
+            console.log("elapsed time : ", + localStorage.getItem('timeElapsed'));
         }
         }, 1000);
         return () => clearInterval(interval);
@@ -103,7 +104,7 @@ export default function
         let interval = null;
         if (isActive){
             interval = setInterval(() => {
-                setGrossPay(elapsedTime * payPerSecond)
+                setGrossPay(localStorage.getItem('timeElapsed') * payPerSecond);
             }, 1000);
             return () => clearInterval(interval);
             }
@@ -126,7 +127,7 @@ export default function
                 Hourly Rate: { submittedRate }
             </h3>
             <h2>
-                Todays Gross Pay: { grossPay.toFixed(3) }
+                Todays Gross Pay: ${ grossPay.toFixed(2) }
             </h2>
             
             <form onSubmit={ handleSubmit }>
