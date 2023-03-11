@@ -116,24 +116,28 @@ export default function
 
     return (
         <div className='p-20'>
-            <h1>Pay Tracking App</h1>
-            <Timer
-                hours={hours}
-                minutes={minutes}
-                seconds={seconds}
-                handleTimerClick={handleTimerClick}
-                buttonText={buttonText}
-                isActive = { isActive }
-            />
-            <h3>
-                Hourly Rate: { submittedRate }
-            </h3>
-            <h2>
-                Todays Gross Pay: ${ grossPay.toFixed(2) }
-            </h2>
-            
-            <form onSubmit={ handleSubmit }>
+            <h1 className='text-3xl font-thin p-2 text-center'>Pay Tracking App</h1>
+            <div className='flex-auto justify-center items-center'>
+                <Timer
+                    hours={hours}
+                    minutes={minutes}
+                    seconds={seconds}
+                    handleTimerClick={handleTimerClick}
+                    buttonText={buttonText}
+                    isActive = { isActive }
+                />
+                <div>
+                    <h3>
+                        Hourly Rate: { submittedRate }
+                    </h3>
+                    <h2>
+                        Todays Gross Pay: ${ grossPay.toFixed(2) }
+                    </h2>
+                </div>
+            </div>    
+            <form className='outline-slate-600 p-10' onSubmit={ handleSubmit }>
                 <input 
+                className='border-none border-red-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-2'
                 placeholder = {placeholderText}
                 min = "0"
                 type="number"
