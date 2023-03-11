@@ -110,6 +110,7 @@ export default function
     }, [submittedRate, isActive]);
     // end pay calculation
 
+    const placeholderText = "Pay Rate : " + submittedRate;
 
     return (
         <div>
@@ -130,9 +131,10 @@ export default function
             
             <form onSubmit={ handleSubmit }>
                 <input 
-                placeholder="Hourly Rate"
+                placeholder = {placeholderText}
                 min = "0"
-                type="number" 
+                type="number"
+                step="0.01" 
                 value={ inputRate } 
                 onChange={ handleRate } 
                 />
