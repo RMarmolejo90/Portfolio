@@ -38,10 +38,12 @@ export default function
 
     // handles the form         
     const [inputRate, setInputRate] = useState('');
-    const [submittedRate, setSubmittedRate] = useState (0);
+    const [submittedRate, setSubmittedRate] = useState (
+        isActive ? localStorage.getItem('activeSubmittedRate') : 0 
+    );
     const [grossPay, setGrossPay] = useState(0);
     const payPerSecond = (submittedRate / 3600);
-    //const isActive = props.isActive;
+
     const handleRate = (event) => {      
         setInputRate(event.target.value)
     }
@@ -51,6 +53,7 @@ export default function
      console.log(`hourly rate is ${inputRate}`);
      setSubmittedRate(inputRate);
      setInputRate("");
+     localStorage.setItem('activeSubmittedRate', inputRate);
      console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
    }
 
@@ -63,8 +66,10 @@ export default function
         //     setButtonText(localStorage.getItem('startButton'));
         // }
         if (isActive === true){
-            setButtonText(localStorage.getItem('startButton'))
+            setButtonText(localStorage.getItem('startButton'));
+            setSubmittedRate(localStorage.getItem('activeSubmittedRate'));
         }
+        
     }, []);
   
   
@@ -97,11 +102,11 @@ export default function
     useEffect(() => {
         let interval = null;
         if (isActive){
-        interval = setInterval(() => {
-            setGrossPay((prevgrossPay => prevgrossPay + payPerSecond))
-        }, 1000);
-        return () => clearInterval(interval);
-        }
+            interval = setInterval(() => {
+                setGrossPay(elapsedTime * payPerSecond)
+            }, 1000);
+            return () => clearInterval(interval);
+            }
     }, [submittedRate, isActive]);
     // end pay calculation
 
