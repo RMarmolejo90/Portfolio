@@ -76,6 +76,7 @@ export default function
   
     // handles timer button
     // Start or stop the timer
+
     const handleTimerClick = () => {
         if (isActive) {
             setIsActive(false);
@@ -114,7 +115,7 @@ export default function
     const placeholderText = "Pay Rate : " + submittedRate;
 
     return (
-        <div>
+        <div className='p-20'>
             <h1>Pay Tracking App</h1>
             <Timer
                 hours={hours}
@@ -122,6 +123,7 @@ export default function
                 seconds={seconds}
                 handleTimerClick={handleTimerClick}
                 buttonText={buttonText}
+                isActive = { isActive }
             />
             <h3>
                 Hourly Rate: { submittedRate }

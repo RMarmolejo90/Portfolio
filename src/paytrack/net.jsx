@@ -102,7 +102,7 @@ export default function Net(props) {
           <Select 
             defaultValue={deductionDefault}
             title = "change deduction rate"
-            className='dropdown-options'
+            className="max-w-md"
             placeholder={deductionsLabel}
             options = {deductionOptions}
             onChange = {handleDeductionRate}
