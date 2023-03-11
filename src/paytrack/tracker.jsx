@@ -7,41 +7,45 @@ import Clear from './clear.jsx'
 export default function 
 () {
   // core logic - sets state for the form and time - imported from Home in Vite project
-    const [isActive, setIsActive] = useState(false); 
-    const [seconds, setSeconds] = useState(0);
-    const hours = Math.floor(seconds / 3600);
-    const minute = Math.floor((seconds % 3600) / 60);
-    const second = Number(seconds % 60);
-    const [buttonText, setButtonText] = useState("Start");
-    const date = new Date();
-    const time = date.getTime();
+    const [isActive, setIsActive] = useState(
+        localStorage.getItem('activeTimer') ? JSON.parse(localStorage.getItem('activeTimer')) : false
+    );
+    const [buttonText, setButtonText] = useState(
+        isActive ? "Stop" : "Start"
+    );
+    const [elapsedTime, setElapsedTime] = useState(0);
     
-    
+    // startTime is not currently used other than for console logging
+    // its used for future features, and for debugging
+    const [startTime, setStartTime] = useState(null);
     
     // timer function
-    const startTime = JSON.parse(localStorage.getItem('startTime'));
     
     useEffect(() => {
-        let interval = null;
-    if (isActive && startTime){
-        interval = setInterval(() => {
-        const timeElapsed = (date.getTime() - startTime);
-        const currentSeconds = (timeElapsed / 1000);
-        setSeconds(currentSeconds);
+        const interval = setInterval(() => {
+        const storedTime = localStorage.getItem('startTime');
+        if (storedTime) {
+            const elapsedTimeInSeconds = Math.floor((new Date().getTime() - storedTime) / 1000);
+            setElapsedTime(elapsedTimeInSeconds);
+        }
         }, 1000);
         return () => clearInterval(interval);
+    }, [isActive]);
+
+    const hours = Math.floor(elapsedTime / 3600);
+    const minutes = Math.floor((elapsedTime % 3600) / 60);
+    const seconds = elapsedTime % 60;
+
+    // handles the form         
+    const [inputRate, setInputRate] = useState('');
+    const [submittedRate, setSubmittedRate] = useState (0);
+    const [grossPay, setGrossPay] = useState(0);
+    const payPerSecond = (submittedRate / 3600);
+    //const isActive = props.isActive;
+    const handleRate = (event) => {      
+        setInputRate(event.target.value)
     }
-    }, [isActive, startTime]);
-   // handles the form         
-   const [inputRate, setInputRate] = useState('');
-   const [submittedRate, setSubmittedRate] = useState (0);
-   const [grossPay, setGrossPay] = useState(0);
-   const payPerSecond = (submittedRate / 3600);
-   //const isActive = props.isActive;
-   const handleRate = (event) => {      
-     setInputRate(event.target.value)
-   }
-   
+    
    const handleSubmit = (event) => {
      event.preventDefault();
      console.log(`hourly rate is ${inputRate}`);
@@ -49,71 +53,90 @@ export default function
      setInputRate("");
      console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
    }
+
+   // handles retrieving data from local storage on page reload
+   // right now it only retrieves the timers isActive state
+   
+    useEffect(() => {
+        setIsActive(localStorage.getItem('activeTimer'));
+        // if (localStorage.getItem('startButton')){
+        //     setButtonText(localStorage.getItem('startButton'));
+        // }
+        if (isActive === true){
+            setButtonText(localStorage.getItem('startButton'))
+        }
+    }, []);
   
   
-  // handles timer button
-  const handleStartTimer = () => {
-      console.log('clicked-start');
-      setIsActive(true);
-      setButtonText("Stop")
-      console.log(time);
-      localStorage.setItem(JSON.stringify('startTime'), time);
-  }
+    // handles timer button
+    // Start or stop the timer
+    const handleTimerClick = () => {
+        if (isActive) {
+            setIsActive(false);
+            setButtonText('Start');
+            setElapsedTime(0);
+            localStorage.removeItem('startTime');
+            localStorage.setItem('activeTimer', false);
+            localStorage.removeItem('startButton');
+            console.log("timer is not active");
+        } else {
+            setIsActive(true);
+            setButtonText('Stop');
+            setStartTime(new Date().getTime());
+            localStorage.setItem('startTime', new Date().getTime());
+            localStorage.setItem('activeTimer', true);
+            localStorage.setItem('startButton', "Stop");
+            console.log("timer-active");
+            console.log("startTime : ", startTime);
+        }
+    };
+
+     // this calculates the hourly pay into seconds
   
-  const handleStopTimer = () => {
-      setIsActive(false);
-      setButtonText("Start");
-      console.log('clicked stop');
-  };
 
-  // this calculates the hourly pay into seconds
-  
-
-  useEffect(() => {
-    let interval = null;
-    if (isActive){
-      interval = setInterval(() => {
-        setGrossPay((prevgrossPay => prevgrossPay + payPerSecond))
-      }, 1000);
-    return () => clearInterval(interval);
-    }
-  }, [submittedRate, isActive]);
-// end pay calculation
+    useEffect(() => {
+        let interval = null;
+        if (isActive){
+        interval = setInterval(() => {
+            setGrossPay((prevgrossPay => prevgrossPay + payPerSecond))
+        }, 1000);
+        return () => clearInterval(interval);
+        }
+    }, [submittedRate, isActive]);
+    // end pay calculation
 
 
-  return (
-    <div>
-        <h1>Pay Tracking App</h1>
-        <Timer 
-            isActive={isActive}
-            handleStartTimer={handleStartTimer}
-            handleStopTimer={handleStopTimer}
-            hours={hours}
-            minute={minute}
-            second={second}
-            buttonText={buttonText}
-        />
-        <h3>
-            Hourly Rate: { submittedRate }
-        </h3>
-        <h2>
-            Todays Gross Pay: { grossPay.toFixed(3) }
-        </h2>
-        
-        <form onSubmit={ handleSubmit }>
-            <input 
-            placeholder="Hourly Rate"
-            min = "0"
-            type="number" 
-            value={ inputRate } 
-            onChange={ handleRate } 
+    return (
+        <div>
+            <h1>Pay Tracking App</h1>
+            <Timer
+                hours={hours}
+                minutes={minutes}
+                seconds={seconds}
+                handleTimerClick={handleTimerClick}
+                buttonText={buttonText}
             />
-            <button type="submit">Submit</button>
-        </form>
-        <Net 
-            grossPay = {grossPay}
-        />
-        <Clear />
-    </div>
-  )
+            <h3>
+                Hourly Rate: { submittedRate }
+            </h3>
+            <h2>
+                Todays Gross Pay: { grossPay.toFixed(3) }
+            </h2>
+            
+            <form onSubmit={ handleSubmit }>
+                <input 
+                placeholder="Hourly Rate"
+                min = "0"
+                type="number" 
+                value={ inputRate } 
+                onChange={ handleRate } 
+                />
+                <button type="submit">Submit</button>
+            </form>
+            <Net 
+                grossPay = {grossPay}
+            />
+            <Clear />
+        </div>
+    )
 }
