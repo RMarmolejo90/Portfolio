@@ -10,8 +10,8 @@ export default function Clear() {
     }
 
   return (
-    <div>
-        <button onClick={clear} className="bg-red-600 p-1 rounded-md font-semibold text-sm text-white">
+    <div className='py-12'>
+        <button onClick={clear} className="bg-slate-600 p-1 rounded-md font-semibold text-sm text-white">
             Reset All
         </button>
     </div>
