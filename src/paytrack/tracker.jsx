@@ -27,9 +27,8 @@ export default function
         setDisplayNet(storedNetPay);
     }, [storedNetPay]);
     
-    // timer function
-    
-    
+    // timer function  
+    // this counts elapsed time
     useEffect(() => {
         const storedTime = localStorage.getItem('startTime');
         const interval = setInterval(() => {
@@ -37,7 +36,7 @@ export default function
             const elapsedTimeInSeconds = Math.floor((new Date().getTime() - storedTime) / 1000);
             setElapsedTime(elapsedTimeInSeconds);
             localStorage.setItem('timeElapsed', elapsedTimeInSeconds);
-            console.log("elapsed time : ", + localStorage.getItem('timeElapsed'));
+            console.log("counting");
         }
         }, 1000);
         return () => clearInterval(interval);
@@ -52,6 +51,8 @@ export default function
     const [submittedRate, setSubmittedRate] = useState (
         isActive ? localStorage.getItem('activeSubmittedRate') : 0 
     );
+
+    const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
     const [grossPay, setGrossPay] = useState(0);
     const payPerSecond = (submittedRate / 3600);
 
@@ -73,9 +74,7 @@ export default function
    
     useEffect(() => {
         setIsActive(localStorage.getItem('activeTimer'));
-        // if (localStorage.getItem('startButton')){
-        //     setButtonText(localStorage.getItem('startButton'));
-        // }
+        
         if (isActive === true){
             setButtonText(localStorage.getItem('startButton'));
             setSubmittedRate(localStorage.getItem('activeSubmittedRate'));
@@ -128,26 +127,27 @@ export default function
         <div className='p-6'>
             <h1 className='text-5xl font-thin pb-8 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
             <div className='flex flex-wrap flex-row-reverse flex-auto justify-around items-center'>
-                <Timer
+                { activeSubmittedRate > 0 ? <Timer
                     hours={hours}
                     minutes={minutes}
                     seconds={seconds}
                     handleTimerClick={handleTimerClick}
-                    buttonText={buttonText}
                     isActive = { isActive }
-                />
+                /> : <div className="hidden">Submit your hourly pay rate</div>}
                 <h2 className='text-2xl font-semibold'>
                     Gross Pay: ${ grossPay.toFixed(2) }
                 </h2>
-                <h2 className='text-2xl font-semibold'>
+
+                {displayNet != null ? <h2 className='text-2xl font-semibold'>
                     Net Pay: ${ displayNet.toFixed(2) }
-                </h2>
-                
+                </h2> :
+                <div className='hidden'></div>
+                }
             </div> 
             <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
                 <div className='flex flex-auto flex-row flex-wrap justify-center items-center'>
                     <h3 className='p-2'>
-                        Hourly Rate: ${ submittedRate }
+                        Hourly Rate: ${ activeSubmittedRate }
                     </h3>
                     <form className='outline-slate-600 p-6' onSubmit={ handleSubmit }>
                         <input 
