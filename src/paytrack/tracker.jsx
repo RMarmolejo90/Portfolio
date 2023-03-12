@@ -16,6 +16,16 @@ export default function
     const [elapsedTime, setElapsedTime] = useState(0);
     
     const [startTime, setStartTime] = useState(null);
+
+    const [displayNet, setDisplayNet] = useState(0.00);
+
+    const storedNetPay = JSON.parse(localStorage.getItem('netPay'));
+
+    // updates the displayNet state with netpay from local storage
+    // this is used to upadate the displayed net pay on the page
+    useEffect (() => {
+        setDisplayNet(storedNetPay);
+    }, [storedNetPay]);
     
     // timer function
     
@@ -115,9 +125,9 @@ export default function
     const placeholderText = "Pay Rate : " + submittedRate;
 
     return (
-        <div className='p-20'>
-            <h1 className='text-5xl font-thin p-2 text-center'>Pay Tracking App</h1>
-            <div className='flex-auto justify-center items-center'>
+        <div className='p-6'>
+            <h1 className='text-5xl font-thin pb-8 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
+            <div className='flex flex-wrap flex-row-reverse flex-auto justify-around items-center'>
                 <Timer
                     hours={hours}
                     minutes={minutes}
@@ -126,31 +136,37 @@ export default function
                     buttonText={buttonText}
                     isActive = { isActive }
                 />
-                <div>
-                    <h3>
-                        Hourly Rate: { submittedRate }
+                <h2 className='text-2xl font-semibold'>
+                    Gross Pay: ${ grossPay.toFixed(2) }
+                </h2>
+                <h2 className='text-2xl font-semibold'>
+                    Net Pay: ${ displayNet.toFixed(2) }
+                </h2>
+                
+            </div> 
+            <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
+                <div className='flex flex-auto flex-row flex-wrap justify-center items-center'>
+                    <h3 className='p-2'>
+                        Hourly Rate: ${ submittedRate }
                     </h3>
-                    <h2>
-                        Todays Gross Pay: ${ grossPay.toFixed(2) }
-                    </h2>
+                    <form className='outline-slate-600 p-6' onSubmit={ handleSubmit }>
+                        <input 
+                        className='border-none border-red-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-4'
+                        placeholder = {placeholderText}
+                        min = "0"
+                        type="number"
+                        step="0.01" 
+                        value={ inputRate } 
+                        onChange={ handleRate } 
+                        />
+                        <button className='bg-blue-500 border-slate-500 rounded-md text-slate-100 font-semibold p-1.5' type="submit">Submit</button>
+                    </form>
                 </div>
-            </div>    
-            <form className='outline-slate-600 p-10' onSubmit={ handleSubmit }>
-                <input 
-                className='border-none border-red-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-2'
-                placeholder = {placeholderText}
-                min = "0"
-                type="number"
-                step="0.01" 
-                value={ inputRate } 
-                onChange={ handleRate } 
+                <Net 
+                    grossPay = {grossPay}
                 />
-                <button className='bg-slate-100 border-slate-500 rounded-md text-slate-500 font-semibold p-1.5' type="submit">Submit</button>
-            </form>
-            <Net 
-                grossPay = {grossPay}
-            />
-            <Clear />
+                <Clear />
+            </div>  
         </div>
     )
 }

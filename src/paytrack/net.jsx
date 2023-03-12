@@ -32,6 +32,7 @@ export default function Net(props) {
   
     useEffect(() => {
       setNetPay(grossPay * deductionRate);
+      localStorage.setItem('netPay', netPay);
     }, [grossPay, deductionRate]);
   
     
@@ -95,14 +96,12 @@ export default function Net(props) {
     )
     
     return (
-      <div className='p-10'>
-        <h1>Todays Net Pay: ${netPay.toFixed(2)}</h1>
+      <div className='p-6 flex flex-row justify-center items-center'>
         <label htmlFor="deductions">Deductions Rate</label>
-        <div className='dropdown-wrapper'>
+        <div className='p-6'>
           <Select 
             defaultValue={deductionDefault}
             title = "change deduction rate"
-            className="max-w-sm border-hidden "
             placeholder={deductionsLabel}
             options = {deductionOptions}
             onChange = {handleDeductionRate}
