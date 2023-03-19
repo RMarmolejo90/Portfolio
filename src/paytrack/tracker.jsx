@@ -74,7 +74,6 @@ export default function
         setIsActive(localStorage.getItem('activeTimer'));
         
         if (isActive === true){
-            setButtonText(localStorage.getItem('startButton'));
             setSubmittedRate(localStorage.getItem('activeSubmittedRate'));
         }
         
