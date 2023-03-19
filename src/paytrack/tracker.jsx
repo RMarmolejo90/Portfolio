@@ -10,9 +10,7 @@ export default function
     const [isActive, setIsActive] = useState(
         localStorage.getItem('activeTimer') ? JSON.parse(localStorage.getItem('activeTimer')) : false
     );
-    const [buttonText, setButtonText] = useState(
-        isActive ? "Stop" : "Start"
-    );
+  
     const [elapsedTime, setElapsedTime] = useState(0);
     
     const [startTime, setStartTime] = useState(null);
@@ -89,7 +87,6 @@ export default function
     const handleTimerClick = () => {
         if (isActive) {
             setIsActive(false);
-            setButtonText('Start');
             setElapsedTime(0);
             localStorage.removeItem('startTime');
             localStorage.setItem('activeTimer', false);
@@ -97,7 +94,6 @@ export default function
             console.log("timer is not active");
         } else {
             setIsActive(true);
-            setButtonText('Stop');
             setStartTime(new Date().getTime());
             localStorage.setItem('startTime', new Date().getTime());
             localStorage.setItem('activeTimer', true);
