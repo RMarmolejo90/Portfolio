@@ -76,31 +76,56 @@ export default function
         if (isActive === true){
             setSubmittedRate(localStorage.getItem('activeSubmittedRate'));
         }
+
+        console.log("isActive : " + isActive);
         
-    }, []);
+    },[]);
   
   
     // handles timer button
     // Start or stop the timer
 
-    const handleTimerClick = () => {
-        if (isActive) {
-            setIsActive(false);
-            setElapsedTime(0);
-            localStorage.removeItem('startTime');
-            localStorage.setItem('activeTimer', false);
-            localStorage.removeItem('startButton');
-            console.log("timer is not active");
-        } else {
-            setIsActive(true);
+    const handleStopClick = () => {
+        setIsActive(false);
+        setElapsedTime(0);
+        localStorage.removeItem('startTime');
+        localStorage.setItem('activeTimer', false);
+        localStorage.removeItem('startButton');
+        console.log("timer is not active");
+    }
+
+    const handleStartClick = () => {
+        setIsActive(true);
             setStartTime(new Date().getTime());
             localStorage.setItem('startTime', new Date().getTime());
             localStorage.setItem('activeTimer', true);
             localStorage.setItem('startButton', "Stop");
             console.log("timer-active");
             console.log("startTime : ", startTime);
-        }
-    };
+    }
+
+    // // I am turning this into two seperate event handlers to help maintain 
+    // // state with the start/stop button
+    // // this section is to be deleted after testing
+
+    // const handleTimerClick = () => {
+    //     if (isActive) {
+    //         setIsActive(false);
+    //         setElapsedTime(0);
+    //         localStorage.removeItem('startTime');
+    //         localStorage.setItem('activeTimer', false);
+    //         localStorage.removeItem('startButton');
+    //         console.log("timer is not active");
+    //     } else {
+    //         setIsActive(true);
+    //         setStartTime(new Date().getTime());
+    //         localStorage.setItem('startTime', new Date().getTime());
+    //         localStorage.setItem('activeTimer', true);
+    //         localStorage.setItem('startButton', "Stop");
+    //         console.log("timer-active");
+    //         console.log("startTime : ", startTime);
+    //     }
+    // };
 
      // this calculates the hourly pay into seconds
   
@@ -123,10 +148,11 @@ export default function
             <h1 className='text-5xl font-thin pb-8 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
             <div className='flex flex-wrap flex-row-reverse flex-auto justify-around items-center'>
                 { activeSubmittedRate > 0 ? <Timer
-                    hours={hours}
-                    minutes={minutes}
-                    seconds={seconds}
-                    handleTimerClick={handleTimerClick}
+                    hours = { hours }
+                    minutes = { minutes }
+                    seconds = { seconds }
+                    handleStopClick = { handleStopClick }
+                    handleStartClick = { handleStartClick }
                     isActive = { isActive }
                 /> : <div className="hidden">Submit your hourly pay rate</div>}
                 <h2 className='text-2xl font-semibold'>
