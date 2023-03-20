@@ -11,19 +11,21 @@ export default function
         localStorage.getItem('activeTimer') ? JSON.parse(localStorage.getItem('activeTimer')) : false
     );
   
-    const [elapsedTime, setElapsedTime] = useState(0);
-    
+    const [elapsedTime, setElapsedTime] = useState(0);  
     const [startTime, setStartTime] = useState(null);
-
     const [displayNet, setDisplayNet] = useState(0.00);
-
+    const [grossPay, setGrossPay] = useState(0);
     const storedNetPay = JSON.parse(localStorage.getItem('netPay'));
 
+
+    
     // updates the displayNet state with netpay from local storage
     // this is used to upadate the displayed net pay on the page
+
     useEffect (() => {
-        setDisplayNet(storedNetPay);
-    }, [storedNetPay]);
+        if (storedNetPay != null)
+        setDisplayNet(storedNetPay)
+    }, [storedNetPay])
     
     // timer function  
     // this counts elapsed time
@@ -51,7 +53,6 @@ export default function
     );
 
     const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
-    const [grossPay, setGrossPay] = useState(0);
     const payPerSecond = (submittedRate / 3600);
 
     const handleRate = (event) => {      
@@ -104,28 +105,6 @@ export default function
             console.log("startTime : ", startTime);
     }
 
-    // // I am turning this into two seperate event handlers to help maintain 
-    // // state with the start/stop button
-    // // this section is to be deleted after testing
-
-    // const handleTimerClick = () => {
-    //     if (isActive) {
-    //         setIsActive(false);
-    //         setElapsedTime(0);
-    //         localStorage.removeItem('startTime');
-    //         localStorage.setItem('activeTimer', false);
-    //         localStorage.removeItem('startButton');
-    //         console.log("timer is not active");
-    //     } else {
-    //         setIsActive(true);
-    //         setStartTime(new Date().getTime());
-    //         localStorage.setItem('startTime', new Date().getTime());
-    //         localStorage.setItem('activeTimer', true);
-    //         localStorage.setItem('startButton', "Stop");
-    //         console.log("timer-active");
-    //         console.log("startTime : ", startTime);
-    //     }
-    // };
 
      // this calculates the hourly pay into seconds
   
@@ -166,26 +145,29 @@ export default function
                 }
             </div> 
             <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
-                <div className='flex flex-auto flex-row flex-wrap justify-center items-center'>
-                    <h3 className='p-2'>
-                        Hourly Rate: ${ activeSubmittedRate }
-                    </h3>
-                    <form className='outline-slate-600 p-6' onSubmit={ handleSubmit }>
-                        <input 
-                        className='text-slate-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-4'
-                        placeholder = {placeholderText}
-                        min = "0"
-                        type="number"
-                        step="0.01" 
-                        value={ inputRate } 
-                        onChange={ handleRate } 
-                        />
-                        <button className='bg-blue-500 border-slate-500 rounded-md text-slate-100 font-semibold p-1.5' type="submit">Submit</button>
-                    </form>
+                
+                <div>
+                    <div className='flex flex-auto flex-row flex-wrap justify-center items-center'>
+                        <h3 className='p-2'>
+                            Hourly Rate: ${ activeSubmittedRate }
+                        </h3>
+                        <form className='outline-slate-600 p-6' onSubmit={ handleSubmit }>
+                            <input 
+                            className='text-slate-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-4'
+                            placeholder = {placeholderText}
+                            min = "0"
+                            type="number"
+                            step="0.01" 
+                            value={ inputRate } 
+                            onChange={ handleRate } 
+                            />
+                            <button className='bg-blue-500 border-slate-500 rounded-md text-slate-100 font-semibold p-1.5' type="submit">Submit</button>
+                        </form>
+                    </div>
+                    <Net 
+                        grossPay = {grossPay}
+                    />
                 </div>
-                <Net 
-                    grossPay = {grossPay}
-                />
                 <Clear />
             </div>  
         </div>
