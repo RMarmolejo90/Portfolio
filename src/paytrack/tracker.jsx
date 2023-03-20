@@ -145,7 +145,7 @@ export default function
 
     return (
         <div className='p-6'>
-            <h1 className='text-5xl font-thin pb-8 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
+            <h1 className='text-5xl pb-8 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
             <div className='flex flex-wrap flex-row-reverse flex-auto justify-around items-center'>
                 { activeSubmittedRate > 0 ? <Timer
                     hours = { hours }
@@ -172,7 +172,7 @@ export default function
                     </h3>
                     <form className='outline-slate-600 p-6' onSubmit={ handleSubmit }>
                         <input 
-                        className='border-none border-red-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-4'
+                        className='text-slate-600 bg-slate-50 rounded-sm py-1.5 px-3 mr-4'
                         placeholder = {placeholderText}
                         min = "0"
                         type="number"
