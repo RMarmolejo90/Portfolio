@@ -6,7 +6,7 @@ import Hero from './portfolio/hero.jsx'
 function App() {
 
   return (
-    <div className="bg-neutral-900 flex-auto justify-center items-center text-slate-400">
+    <div className="bg-neutral-900 flex-auto justify-center items-center text-slate-400 font-lato leading-6">
       
       <Hero />
       <Tracker />
