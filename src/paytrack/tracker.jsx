@@ -123,8 +123,8 @@ export default function
     const placeholderText = "Pay Rate : " + submittedRate;
 
     return (
-        <div className='p-6'>
-            <h1 className='text-5xl pb-8 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
+        <div className='p-8'>
+            <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 '>Pay Tracking App</h1>
             <div className='flex flex-wrap flex-row-reverse flex-auto justify-around items-center'>
                 { activeSubmittedRate > 0 ? <Timer
                     hours = { hours }
@@ -144,7 +144,7 @@ export default function
                 <div className='hidden'></div>
                 }
             </div> 
-            <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
+            <div className='flex flex-auto flex-col flex-wrap justify-end items-center'> 
                 
                 <div>
                     <div className='flex flex-auto flex-row flex-wrap justify-center items-center'>
