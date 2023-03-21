@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './App.css'
 import Tracker from './paytrack/tracker.jsx'
 import Hero from './portfolio/hero.jsx'
+import About from './portfolio/about'
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <div className="bg-neutral-900 flex-auto justify-center items-center text-slate-400 font-lato leading-6">
       
       <Hero />
+      <About />
       <Tracker />
       <footer className='min-w-full p-12 bg-zinc-900 text-center'>
         <p>Thanks for trying my pay tracking app. You can direct any questions or feedback to my email.</p>
