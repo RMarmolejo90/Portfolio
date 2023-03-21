@@ -11,7 +11,7 @@ export default function about() {
   return (
     <div className='text-md leading-6'>
         <div>
-            <p className='px-6 py-8'>
+            <p className='px-10 py-8'>
             Hello, and welcome to my website! I'm a passionate web developer who loves creating unique and modern web apps and websites. I strive to develop high-performance interfaces with a strong emphasis on quality. To achieve this, I use front-end frameworks like React JS and Svelte to create dynamic and interactive web pages that provide a better user experience.
              I leverage CSS libraries like Tailwind CSS and Bootstrap to maintain consistency across the user interface while accelerating the development process.
              With Node JS, I'm able to perform all my routing and crud operations through JavaScript Rest API's.
@@ -43,11 +43,11 @@ export default function about() {
                     </li>
                 </ul>
             </div>
-            <p className='px-6 py-8'>
+            <p className='px-10 py-8'>
             I am excited to showcase my Pay Tracker app, which offers real-time monitoring of your daily earnings. This free-to-use application, developed for my personal use, is designed to run only on the same device it started on. Simply enter your pay rate and clock in when you start work, and the app will provide an estimate of your payroll deduction. The real-time feature displays your earnings throughout the day, providing you with valuable insights and helping you track your progress towards your earnings goals. 
             If adjustments are necessary, a deductions rate selector is available at the bottom of the page. 
             </p>
-            <p className='px-6 py-8'>
+            <p className='px-10 py-8'>
             Please keep in mind that this is only the beta version, and I'm continuously working on updates to make it even better. If you happen to find any bugs or have ideas for improvements, please don't hesitate to contact me. I'm always looking for ways to enhance the app. 
             </p>
         </div>

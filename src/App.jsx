@@ -7,7 +7,7 @@ import About from './portfolio/about'
 function App() {
 
   return (
-    <div className="bg-neutral-900 flex-auto justify-center items-center text-slate-400 font-lato leading-6">
+    <div className="bg-neutral-900 flex-auto justify-center items-center text-slate-300 font-lato leading-6">
       
       <Hero />
       <About />
