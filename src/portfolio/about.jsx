@@ -12,7 +12,7 @@ export default function about() {
     <div className='text-md leading-6'>
         <div>
             <p className='px-10 py-8'>
-            Hello, and welcome to my website! I'm a passionate web developer who loves creating unique and modern web apps and websites. I strive to develop high-performance interfaces with a strong emphasis on quality. To achieve this, I use front-end frameworks like React JS and Svelte to create dynamic and interactive web pages that provide a better user experience.
+            Hello, and welcome to my website! I'm a passionate web developer who loves creating unique and modern web apps and websites. I develop high-performance interfaces with a strong emphasis on quality. To achieve this, I use front-end frameworks like React JS and Svelte to create dynamic and interactive web pages that provide a better user experience.
              I leverage CSS libraries like Tailwind CSS and Bootstrap to maintain consistency across the user interface while accelerating the development process.
              With Node JS, I'm able to perform all my routing and crud operations through JavaScript Rest API's.
              I'm also well-versed in NoSQL and SQL for developing data-driven web applications.
