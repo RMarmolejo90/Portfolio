@@ -96,7 +96,7 @@ export default function Net(props) {
     )
     
     return (
-      <div className='p-6 flex flex-row justify-center items-center'>
+      <div className='p-6 flex flex-col justify-center items-center'>
         <label htmlFor="deductions">Deductions Rate</label>
         <div className='p-6 text-slate-800'>
           <Select 

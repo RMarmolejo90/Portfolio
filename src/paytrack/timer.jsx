@@ -4,7 +4,7 @@ export default function Timer({ hours, minutes, seconds, handleStartClick, handl
 
 
     return (
-        <div className='p-6 flex flex-row items-center justify-between'>
+        <div className='m-6 flex flex-row items-center justify-between'>
             <p className='font-semibold text-2xl p-4 text-center'>
             {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
             </p>
