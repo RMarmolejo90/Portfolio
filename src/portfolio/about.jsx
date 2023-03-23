@@ -21,25 +21,25 @@ export default function about() {
                 <h2 className='p-8 text-sky-500 font-tilt text-2xl'>Development Tools</h2>
                 <ul className='flex flex-wrap flex-auto items-between justify-center p-6'>
                     <li>
-                        <img className='p-4 m-3'  src={css} alt="software logo" />
+                        <img className='p-4 m-3 w-24'  src={css} alt="software logo" />
                     </li>
                     <li>
-                        <img className='p-4 m-3'  src={reactLogo} alt="software logo" />
+                        <img className='p-4 m-3 w-24'  src={reactLogo} alt="software logo" />
                     </li>
                     <li>
-                        <img  className='p-4 m-3' src={tailwind} alt="software logo" />
+                        <img  className='p-4 m-3 w-24' src={tailwind} alt="software logo" />
                     </li>
                     <li>
-                        <img  className='p-4 m-3' src={figma} alt="software logo" />
+                        <img  className='p-4 m-3 w-24' src={figma} alt="software logo" />
                     </li>
                     <li>
-                        <img  className='p-4 m-3' src={html} alt="software logo" />
+                        <img  className='p-4 m-3 w-24' src={html} alt="software logo" />
                     </li>
                     <li>
-                        <img  className='p-4 m-3' src={js} alt="software logo" />
+                        <img  className='p-4 m-3 w-24' src={js} alt="software logo" />
                     </li>
                     <li>
-                        <img  className='p-4 m-3' src={nodejs} alt="software logo" />
+                        <img  className='p-4 m-3 w-24' src={nodejs} alt="software logo" />
                     </li>
                 </ul>
             </div>
