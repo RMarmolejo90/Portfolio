@@ -10,7 +10,7 @@ export default function Navbar() {
 
             <div className="flex-wrap-reverse flex justify-center items-end md:items-end md:justify-center tracking-wide uppercase">           
                 
-                <ul className='flex flex-row justify-between text-md m-4 mx-10'>
+                <ul className='flex flex-row justify-between text-md m-4 mx-10 font-semibold'>
                     
                     <li className='px-4'>
                         <NavLink 

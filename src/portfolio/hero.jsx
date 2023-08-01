@@ -12,7 +12,7 @@ export default function hero() {
                 <h1 className='text-5xl lg:text-6xl font-semibold m-2 mb-12 tracking-wide font-tilt'>RICH MARMOLEJO</h1>
                 <div className='flex justify-center max-w-lg md:justify-end'>
                     <a href="mailto:richardmarmolejo@gmail.com" 
-                        className='border py-2.5 px-8 lg:px-14 border-zinc-800 font-semibold tracking-wider box-content hover:bg-blue-700 hover:text-zinc-300'>CONTACT ME
+                        className='border py-2.5 px-8 lg:px-14 border-zinc-400 font-semibold tracking-wider box-content hover:bg-blue-700 hover:text-zinc-300 hover:border-zinc-200'>CONTACT ME
                     </a>
                 </div>
             </div>

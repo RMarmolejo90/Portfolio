@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-      tilt: "'Tilt Warp', cursive",
+      tilt: "'Tilt Warp', sans-serifs",
       lato: "'Lato', sans-serif"
       },
       backgroundImage:{
