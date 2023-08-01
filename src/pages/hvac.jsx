@@ -41,7 +41,7 @@ export default function Hvac() {
   
               <div className="flex flex-wrap flex-col items-center justify-center">
                 <h1 className="text-6xl text-center backdrop-grayscale p-6 font-bold lg:mb-[-100px]  bg-clip-text text-transparent bg-primary-gradient">My HVAC Story</h1>
-                <img className="lg:max-w-lg max-w-xs lg:mx-4" src="../src/assets/RichHVAC.jpg" alt="Close-up, smiling at the camera standing on top of a building in Philadelphia" />
+                <img className="lg:max-w-lg max-w-xs lg:mx-4" src="../assets/RichHVAC.jpg" alt="Close-up, smiling at the camera standing on top of a building in Philadelphia" />
               </div>
   
               <p className="mt-6 m-4 p-4 max-w-xl lg:m-0 lg:mt-6 lg:p-0">For nearly a decade, I have passionately dedicated myself to tackling only the most difficult and complicated HVAC service calls. I deliberately chose to focus exclusively on these challenging assignments, which allowed me to gain invaluable experience and expertise in handling intricate scenarios. I also took on the responsibility of a training manager and field supervisor, mentoring and guiding aspiring technicians on their paths to success. This unwavering commitment to excellence has shaped me into the skilled HVAC technician I am today. 
