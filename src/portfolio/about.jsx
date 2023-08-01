@@ -18,7 +18,7 @@ export default function about() {
              I'm also well-versed in NoSQL and SQL for developing data-driven web applications.
             </p>
             <div className='p-8 flex flex-col flex-wrap flex-auto justify-center items-center'>
-                <h2 className='p-8 text-sky-500 font-tilt text-2xl'>Development Tools</h2>
+                <h2 className='p-8 text-transparent bg-clip-text bg-primary-gradient text-5xl font-tilt'>Development Tools</h2>
                 <ul className='flex flex-wrap flex-auto items-between justify-center p-6'>
                     <li>
                         <img className='p-4 m-3 w-24'  src={css} alt="software logo" />
