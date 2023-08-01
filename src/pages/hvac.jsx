@@ -3,7 +3,7 @@ export default function Hvac() {
     return (
       <div className="bg-primary-gradient">
         <div className="bg-[url('../src/assets/HeatPump1.webp')] bg-cover bg-no-repeat min-w-full flex items-start justify-center p-10 min-h-[80vh] bg-center">      
-          <div className="lg:p-10 px-auto min-w-full text-4xl text-center font-semibold backdrop-contrast-200 backdrop-brightness-50 text-slate-100 flex flex-col items-center">
+          <div className="lg:p-10 px-auto min-w-full text-4xl text-center font-semibold backdrop-contrast-150 backdrop-brightness-50 text-slate-100 flex flex-col items-center">
             <h1 className="m-3 text-4xl">HVAC Service Technician</h1>
             <h3 className="m-3 text-4xl font-light">Delivering Professional Excellence</h3>
             <a className="p-3 text-slate-950 m-3 tracking-wider text-sm font-semibold bg-yellow-500 hover:bg-yellow-400 rounded-md" href="mailto:richardmarmolejo@gmail.com">Contact Me</a>
