@@ -3,9 +3,9 @@ export default function Hvac() {
     return (
       <div className="bg-primary-gradient">
         <div className="bg-[url('../src/assets/HeatPump1.webp')] bg-cover bg-no-repeat min-w-full flex items-start justify-center p-10 min-h-[80vh] bg-center">      
-          <div className="p-10 text-4xl font-semibold backdrop-contrast-150 backdrop-brightness-50 text-slate-100 flex flex-col items-center">
-            <h1 className="m-3 text-4xl">Professional HVAC Service Technician</h1>
-            <h3 className="m-3 text-3xl">Residential and Light Commercial</h3>
+          <div className="lg:p-10 px-auto min-w-full text-4xl text-center font-semibold backdrop-contrast-200 backdrop-brightness-50 text-slate-100 flex flex-col items-center">
+            <h1 className="m-3 text-4xl">HVAC Service Technician</h1>
+            <h3 className="m-3 text-4xl font-light">Delivering Professional Excellence</h3>
             <a className="p-3 text-slate-950 m-3 tracking-wider text-sm font-semibold bg-yellow-500 hover:bg-yellow-400 rounded-md" href="mailto:richardmarmolejo@gmail.com">Contact Me</a>
           </div>        
         </div>
@@ -37,14 +37,14 @@ export default function Hvac() {
         <div className="flex flex-col lg:flex-row items-center justify-between mt-20 bg-slate-100">
   
           <div className="flex flex-wrap items-center justify-between p-2 py-4 m-8">
-            <div className="p-4 lg:max-w-lg max-w-sm text-lg text-slate-700 flex flex-col flex-wrap items-center justify-between">
+            <div className="p-4 lg:max-w-lg max-w-md text-lg text-slate-700 flex flex-col flex-wrap items-center justify-between">
   
               <div className="flex flex-wrap flex-col items-center justify-center">
                 <h1 className="text-6xl text-center backdrop-grayscale p-6 font-bold lg:mb-[-100px]  bg-clip-text text-transparent bg-primary-gradient">My HVAC Story</h1>
-                <img className="lg:max-w-lg max-w-xs lg:mx-4" src="../../public/RichHVAC.jpg" alt="Close-up, smiling at the camera standing on top of a building in Philadelphia" />
+                <img className="lg:max-w-lg max-w-xs lg:mx-4" src="/RichHVAC.jpg" alt="Close-up, smiling at the camera standing on top of a building in Philadelphia" />
               </div>
   
-              <p className="mt-6 m-4 p-4 max-w-xl lg:m-0 lg:mt-6 lg:p-0">For nearly a decade, I have passionately dedicated myself to tackling only the most difficult and complicated HVAC service calls. I deliberately chose to focus exclusively on these challenging assignments, which allowed me to gain invaluable experience and expertise in handling intricate scenarios. I also took on the responsibility of a training manager and field supervisor, mentoring and guiding aspiring technicians on their paths to success. This unwavering commitment to excellence has shaped me into the skilled HVAC technician I am today. 
+              <p className="mt-6 m-4 p-4  lg:m-0 lg:mt-6 lg:p-0">For nearly a decade, I have passionately dedicated myself to tackling only the most difficult and complicated HVAC service calls. I deliberately chose to focus exclusively on these challenging assignments, which allowed me to gain invaluable experience and expertise in handling intricate scenarios. I also took on the responsibility of a training manager and field supervisor, mentoring and guiding aspiring technicians on their paths to success. This unwavering commitment to excellence has shaped me into the skilled HVAC technician I am today. 
               </p>
             </div>
           </div>

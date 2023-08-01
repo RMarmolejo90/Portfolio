@@ -15,14 +15,14 @@ export default function Navbar() {
                     <li className='px-4'>
                         <NavLink 
                             to="/"
-                            className={({ isActive }) => isActive ? 'text-sky-200 py-2 border-b-2 border-sky-200' : 'text-blue-400 hover:text-sky-50'}>            
+                            className={({ isActive }) => isActive ? 'text-sky-200 py-2 lg:border-b-2 border-sky-200' : 'text-blue-400 hover:text-sky-50'}>            
                             Software Developer
                         </NavLink>
                     </li>
                     <li className='px-4'>
                         <NavLink 
                             to="/Hvac"
-                            className={({ isActive }) => isActive ? 'text-sky-200 py-2 border-b-2 border-sky-200' : 'text-blue-400 hover:text-sky-50'}>           
+                            className={({ isActive }) => isActive ? 'text-sky-200 py-2 lg:border-b-2 border-sky-200' : 'text-blue-400 hover:text-sky-50'}>           
                             HVAC Technician
                         </NavLink>
                     </li>
