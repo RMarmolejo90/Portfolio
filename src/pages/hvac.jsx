@@ -6,7 +6,7 @@ export default function Hvac() {
           <div className="lg:p-10 px-auto min-w-full text-4xl text-center font-semibold backdrop-contrast-150 backdrop-brightness-50 text-slate-100 flex flex-col items-center">
             <h1 className="m-3 text-4xl">HVAC Service Technician</h1>
             <h3 className="m-3 text-4xl font-light">Delivering Professional Excellence</h3>
-            <a className="p-3 text-slate-950 m-3 tracking-wider text-sm font-semibold bg-yellow-500 hover:bg-yellow-400 rounded-md" href="mailto:richardmarmolejo@gmail.com">Contact Me</a>
+            <a className="p-3 px-6 text-slate-800 m-3 tracking-wider text-base font-bold bg-yellow-500 hover:bg-yellow-400 rounded-md" href="mailto:richardmarmolejo@gmail.com">Contact Me</a>
           </div>        
         </div>
   
