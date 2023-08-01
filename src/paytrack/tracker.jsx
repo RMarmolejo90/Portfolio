@@ -124,7 +124,7 @@ export default function
 
     return (
         <div className='p-8'>
-            <h1 className='pb-10 text-center text-transparent bg-clip-text bg-primary-gradient text-5xl border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
+            <h1 className='pb-10 text-center text-transparent bg-clip-text bg-text-gradient text-5xl border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
             <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>
                 <h2 className='text-2xl font-semibold m-6'>
                     Gross: ${ grossPay.toFixed(2) }
